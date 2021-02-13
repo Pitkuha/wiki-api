@@ -12,11 +12,17 @@ public class User {
 
     private String username;
     private String password;
+    private int article_count;
+
+    @OneToMany
+    private List<Article> userArticle;
 
 
-    public User(String username, String password) {
+    public User(String username, String password, int article_count, List<Article> list) {
         this.username = username;
         this.password = password;
+        this.article_count = article_count;
+        this.userArticle = list;
     }
 
     public User(UserDTO userDTO) {
@@ -50,4 +56,21 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getArticle_count() {
+        return article_count;
+    }
+
+    public void setArticle_count(int article_count) {
+        this.article_count = article_count;
+    }
+
+    public List<Article> getUserArticle() {
+        return userArticle;
+    }
+
+    public void setUserArticle(List<Article> userArticle) {
+        this.userArticle = userArticle;
+    }
+
 }

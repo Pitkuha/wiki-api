@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>bot12313</groupId>
-    <artifactId>Tarkov</artifactId>
+    <groupId>Pitkuha</groupId>
+    <artifactId>wiki-api</artifactId>
     <version>1-SNAPSHOT</version>
-    <name>Tarkov</name>
+    <name>wiki-api</name>
 
     <properties>
         <java.version>1.8</java.version>
