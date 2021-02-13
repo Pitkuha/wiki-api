@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/style-afteravtor.css">
+    <title>AfterAvto</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="buttons_go">
+        <p><input type="button" class="but" value="PERSONAGE" name="per" onclick="pers()"></p>
+        <p><input type="button" class="but" value="TRADERS" name="traders" onclick="traders()"></p>
+        <p><input type="button" class="but" value="TASKS" name="tasks" onclick="tasks()"></p>
+        <form action="http://localhost:8080/logout">
+            <input class="but" type="submit" value="LOGOUT">
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script>
+    function pers()
+    {
+        window.location = "person.html"
+    }
+    function traders()
+    {
+        window.location = "traders.html"
+    }
+    function tasks()
+    {
+        window.location = "tasks.html"
+    }
+</script>
+</body>
+</html>

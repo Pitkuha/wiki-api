@@ -1,0 +1,57 @@
+/* ПОСТАВИТЬ ВЕЗДЕ SANS-SERIF */
+.bubu{
+    background-color: transparent;
+    color: white;
+    width: 15%;
+    transition: 0.5s;
+    border: none;
+    font-family: "Trebuchet MS";
+    font-size: 30px;
+}
+.bubu:hover{
+    color: black;
+    background-color: #928f83;
+}
+body {
+    background: url("../picture/maxresdefault.jpg");
+    text-align: center;
+    background-size: cover;
+}
+.errorchik {
+    color: orange;
+    font-family: Sans-serif;
+    font-size: 22px;
+}
+.mainArea {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+}
+#username,#password{
+    background: transparent !important;
+    border: none;
+    transition: 0.5s;
+    text-align: center;
+    width: 23%;
+    font-size: 40px;
+    font-family: "Trebuchet MS";
+    color: white;
+}
+#username:hover, #password:hover{
+    background-color: #928f83 !important;
+    color: black;
+    border: none;
+}
+#username::-webkit-input-placeholder, #password::-webkit-input-placeholder{
+    color: white;
+    transition: .5s;
+}
+#username:hover::-webkit-input-placeholder, #password:hover::-webkit-input-placeholder{
+    color: black;
+}
+.obertka-error{
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 37.5%;
+}

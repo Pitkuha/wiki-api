@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registration</title>
+    <link rel="stylesheet" href="css/style-registration.css">
+</head>
+<body>
+        <form id="appreg"
+              @submit="checkForm"
+              action="/registration"
+              method="post"
+              novalidate="true"
+        >
+            <div class="obertka-error">
+            <div style="color: orange; font-size: 25px" v-if="error != null" class="alert alert-danger">{{err_msg}}</div>
+            <p class="errorchik" v-if="errors.length" >
+                <b>Check your error and correct them:</b>
+            <p class="errorchik" v-for="error in errors">{{ error }}</p>
+            </p>
+            </div>
+            <div class="mainArea">
+                <p>
+                    <label for="username"></label>
+                    <input
+                            id="username"
+                            v-model="username"
+                            type="email"
+                            name="username"
+                            placeholder="Login"
+                    >
+                </p>
+                <p>
+                    <label for="password"></label>
+                    <input
+                            id="password"
+                            v-model="password"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                    >
+                </p>
+            </div>
+            <p>
+                <input
+                        type="submit"
+                        value="SIGN UP"
+                        class="bubu"
+                >
+            </p>
+        </form>
+        <input class="bubu" type="button" value="SIGN IN" name="back" onclick="back()">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script>
+    let urlP = new URLSearchParams(window.location.search);
+    var app = new Vue({
+        el: '#appreg',
+        data: {
+            error: urlP.get('error'),
+            errors: [],
+            username: null,
+            password: null,
+            err_msg: 'Registration failed. User exists'
+        },
+        methods: {
+            checkForm: function (e) {
+                this.errors = [];
+                if (!this.username){
+                    this.errors.push('Type Login')}
+
+                if (!this.password){
+                    this.errors.push('Type Password')
+                }
+
+                if (!this.errors.length) {
+                    return true;
+                }
+
+                e.preventDefault();
+            },
+            validEmail: function (email) {
+                return false;
+            }
+        }
+    });
+
+    function back()
+    {
+        window.location = "login.html"
+    }
+</script>
+</body>
+</html>
