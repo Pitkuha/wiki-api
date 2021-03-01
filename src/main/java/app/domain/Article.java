@@ -21,8 +21,6 @@ public class Article {
     @ManyToOne
     private User author;
 
-    @OneToMany
-    private List<History> history;
 
 
     public Article(long articleId, String name, String text, User author) {

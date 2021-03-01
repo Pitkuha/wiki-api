@@ -5,6 +5,7 @@ import app.repository.ArticleRepository;
 import app.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @Service
@@ -21,7 +22,6 @@ public class ArticleService {
         Article article = new Article();
         article.setAuthor(userRepository.findByUsername(owner));
         article.setName(userData.getName());
-//        article.setDate_change(new Date());
         article.setText(userData.getText());
         articleRepository.save(article);
         return article;
@@ -32,6 +32,7 @@ public class ArticleService {
     }
 
     public boolean isNameVacant(String name){
-        return articleRepository.findByName(name) != null;
+        return !(articleRepository.findByName(name) != null);
     }
+
 }
