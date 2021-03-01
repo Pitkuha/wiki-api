@@ -1,5 +1,7 @@
 package app.domain;
 
+import app.DTO.UserDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,9 @@ public class User {
 
     @OneToMany
     private List<Article> userArticle;
+
+    @OneToMany
+    private List<History> history;
 
 
     public User(String username, String password, int article_count, List<Article> list) {

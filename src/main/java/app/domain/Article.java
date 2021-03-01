@@ -6,9 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.List;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "Article")
 public class Article {
@@ -17,16 +16,18 @@ public class Article {
     private long articleId;
 
     private String name;
-    private Date date_change;
     private String text;
 
     @ManyToOne
     private User author;
 
-    public Article(long articleId, String name, Date date_change, String text, User author) {
+    @OneToMany
+    private List<History> history;
+
+
+    public Article(long articleId, String name, String text, User author) {
         this.articleId = articleId;
         this.name = name;
-        this.date_change = date_change;
         this.text = text;
         this.author = author;
     }
@@ -34,4 +35,35 @@ public class Article {
     public Article() {
     }
 
+    public long getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(long articleId) {
+        this.articleId = articleId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
 }

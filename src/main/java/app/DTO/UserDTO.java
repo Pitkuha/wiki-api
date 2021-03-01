@@ -1,5 +1,6 @@
-package app.domain;
+package app.DTO;
 
+import app.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

@@ -1,7 +1,7 @@
 package app.service;
 
 import app.domain.User;
-import app.domain.UserDTO;
+import app.DTO.UserDTO;
 import app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,9 +38,14 @@ public class UserDTOService implements UserDetailsService {
         return userRepository.findByUsernameAndPassword(login, encoded) != null;
     }
 
+    public void incrementArtCount(String user){
+        userRepository.incCount(user);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return new UserDTO(userRepository.findByUsername(username));
     }
+
 
 }
