@@ -15,7 +15,7 @@ public class ArticleService {
         this.userRepository = userRepository;
     }
 
-    public Article createArticle(Article userData, String owner){
+    public Article createArticle(Article userData, String owner) {
         Article article = new Article();
         article.setAuthor(userRepository.findByUsername(owner));
         article.setName(userData.getName());
@@ -25,25 +25,25 @@ public class ArticleService {
         return article;
     }
 
-    public void updateArticle(Article userData, String owner){
+    public void updateArticle(Article userData, String owner) {
         articleRepository.update(userData.getText(), owner);
     }
 
-    public boolean isNameVacant(String name){
+    public boolean isNameVacant(String name) {
         return !(articleRepository.findByName(name) != null);
     }
 
-    public boolean checkOwner(String name, long id){
+    public boolean checkOwner(String name, long id) {
         return articleRepository.findById(id).get().getAuthor().getUsername().equals(name);
     }
 
-    public void deleteArticle(long id){
+    public void deleteArticle(long id) {
         articleRepository.delete(id);
     }
 
-    public Article getArticleById(long id){
+    public Article getArticleById(long id) {
         if (articleRepository.findById(id).isPresent())
-        return articleRepository.findById(id).get();
+            return articleRepository.findById(id).get();
         else return null;
     }
 

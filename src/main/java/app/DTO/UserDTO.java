@@ -65,7 +65,7 @@ public class UserDTO implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities(){
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
 }

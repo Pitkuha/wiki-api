@@ -20,7 +20,6 @@ public class User {
     private List<Article> userArticle;
 
 
-
     public User(String username, String password, int article_count, List<Article> list) {
         this.username = username;
         this.password = password;

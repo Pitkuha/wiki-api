@@ -32,13 +32,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration.html", "/css/*", "/js/*", "/picture/*", "/registration", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/login.html")
-                    .permitAll()
+                .formLogin()
+                .loginPage("/login.html")
+                .permitAll()
                 .and()
-                    .httpBasic()
+                .httpBasic()
                 .and()
-                    .logout()
+                .logout()
                 .permitAll();
     }
 

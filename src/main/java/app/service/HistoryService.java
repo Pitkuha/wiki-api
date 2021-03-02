@@ -22,7 +22,7 @@ public class HistoryService {
         this.articleRepository = articleRepository;
     }
 
-    public History createRecord(Article article, String userName){
+    public History createRecord(Article article, String userName) {
         History history = new History(new Date()
                 , articleRepository.findByName(article.getName())
                 , userRepository.findByUsername(userName));

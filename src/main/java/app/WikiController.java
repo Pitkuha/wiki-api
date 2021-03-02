@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
 
@@ -23,8 +22,8 @@ public class WikiController {
     private HistoryService historyService;
 
     @PostMapping(value = "/updateArticle", produces = "application/json;")
-    public void updateArticle(@RequestBody Article request, Principal principal, HttpServletResponse response) throws IOException{
-        if (!articleService.isNameVacant(request.getName())){
+    public void updateArticle(@RequestBody Article request, Principal principal, HttpServletResponse response) throws IOException {
+        if (!articleService.isNameVacant(request.getName())) {
             if (userDTOService.checkEditAbility(request, principal.getName())) {
                 articleService.updateArticle(request, principal.getName());
                 historyService.createRecord(request, principal.getName());
@@ -32,7 +31,7 @@ public class WikiController {
                 response.sendError(418, "Ошибка прав редактирование");
             }
         } else {
-            response.sendError(418,"Такой статьи не существует.");
+            response.sendError(418, "Такой статьи не существует.");
         }
     }
 
@@ -43,18 +42,18 @@ public class WikiController {
             userDTOService.incrementArtCount(principal.getName());
             historyService.createRecord(request, principal.getName());
         } else {
-            response.sendError(418,"Статья уже существует.");
+            response.sendError(418, "Статья уже существует.");
         }
         System.out.println("Создание статьи");
     }
 
     @DeleteMapping(value = "/deleteArticle", produces = "application/json")
     public void deleteArticle(@RequestParam long id, HttpServletResponse response, Principal principal) throws IOException {
-        if (articleService.checkOwner(principal.getName(), id)){
+        if (articleService.checkOwner(principal.getName(), id)) {
             articleService.deleteArticle(id);
-            historyService.createRecord(articleService.getArticleById(id),principal.getName());
+            historyService.createRecord(articleService.getArticleById(id), principal.getName());
         } else {
-            response.sendError(418,"Вы не являетесь владельцем статьи.");
+            response.sendError(418, "Вы не являетесь владельцем статьи.");
         }
     }
 

@@ -1,7 +1,6 @@
 package app.DTO;
 
 import app.domain.Article;
-import org.springframework.context.annotation.Bean;
 
 
 public class ArticleDTO {

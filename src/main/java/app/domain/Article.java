@@ -17,7 +17,6 @@ public class Article {
     private User author;
 
 
-
     public Article(long articleId, String name, String text, User author, boolean deleted) {
         this.articleId = articleId;
         this.name = name;
