@@ -1,7 +1,9 @@
 package app.service;
 
+import app.domain.Article;
 import app.domain.User;
 import app.DTO.UserDTO;
+import app.repository.ArticleRepository;
 import app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,15 +12,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+
 @Service
 public class UserDTOService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final ArticleRepository articleRepository;
 
     @Autowired
     private PasswordEncoder encoder;
 
-    public UserDTOService(UserRepository userRepository) {
+    public UserDTOService(UserRepository userRepository, ArticleRepository articleRepository) {
         this.userRepository = userRepository;
+        this.articleRepository = articleRepository;
     }
 
     public User register(UserDTO userData) {
@@ -40,6 +46,11 @@ public class UserDTOService implements UserDetailsService {
 
     public void incrementArtCount(String user){
         userRepository.incCount(user);
+    }
+
+    public boolean checkEditAbility(Article article, String user){
+        return (articleRepository.findByName(article.getName()).getAuthor().getUsername().equals(user))
+                || (userRepository.findByUsername(user).getArticle_count() == 3);
     }
 
     @Override

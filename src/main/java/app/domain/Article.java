@@ -1,12 +1,6 @@
 package app.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.sql.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "Article")
@@ -17,17 +11,19 @@ public class Article {
 
     private String name;
     private String text;
+    private boolean deleted;
 
     @ManyToOne
     private User author;
 
 
 
-    public Article(long articleId, String name, String text, User author) {
+    public Article(long articleId, String name, String text, User author, boolean deleted) {
         this.articleId = articleId;
         this.name = name;
         this.text = text;
         this.author = author;
+        this.deleted = deleted;
     }
 
     public Article() {
@@ -64,4 +60,13 @@ public class Article {
     public void setAuthor(User author) {
         this.author = author;
     }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
 }
