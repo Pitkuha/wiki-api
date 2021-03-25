@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 public class WikiController {
@@ -25,7 +26,7 @@ public class WikiController {
     public void updateArticle(@RequestBody Article request, Principal principal, HttpServletResponse response) throws IOException {
         if (!articleService.isNameVacant(request.getName())) {
             if (userDTOService.checkEditAbility(request, principal.getName())) {
-                articleService.updateArticle(request, principal.getName());
+                articleService.updateArticle(request, request.getName());
                 historyService.createRecord(request, principal.getName());
             } else {
                 response.sendError(418, "Ошибка прав редактирование");
@@ -73,6 +74,9 @@ public class WikiController {
         }
     }
 
-
+    @GetMapping("/getAllArticle")
+    public List<ArticleDTO> getAllArticle(){
+        return articleService.getAllArticleId();
+    }
 
 }

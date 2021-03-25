@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     Article findByName(String name);
 
@@ -19,5 +22,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Modifying
     @Query("update Article a set a.deleted = true where a.articleId = :id")
     void delete(@Param("id") long id);
+
+    @Query("select a from Article a where a.deleted = false")
+    ArrayList<Article> findAllIdAndName();
 
 }

@@ -1,9 +1,13 @@
 package app.service;
 
+import app.DTO.ArticleDTO;
 import app.domain.Article;
 import app.repository.ArticleRepository;
 import app.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ArticleService {
@@ -25,8 +29,9 @@ public class ArticleService {
         return article;
     }
 
-    public void updateArticle(Article userData, String owner) {
-        articleRepository.update(userData.getText(), owner);
+    public void updateArticle(Article userData, String name) {
+        System.out.println("Text = " + userData.getText());
+        articleRepository.update(userData.getText(), name);
     }
 
     public boolean isNameVacant(String name) {
@@ -35,6 +40,11 @@ public class ArticleService {
 
     public boolean checkOwner(String name, long id) {
         return articleRepository.findById(id).get().getAuthor().getUsername().equals(name);
+    }
+
+    public List<ArticleDTO> getAllArticleId(){
+        ArrayList<Article> articles = articleRepository.findAllIdAndName();
+        return ArticleDTO.articleDTOListToGet(articles);
     }
 
     public void deleteArticle(long id) {

@@ -1,6 +1,10 @@
 package app.DTO;
 
+import antlr.collections.List;
 import app.domain.Article;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 
 public class ArticleDTO {
@@ -15,6 +19,8 @@ public class ArticleDTO {
         this.text = text;
         this.author = author;
     }
+
+    public ArticleDTO(){}
 
     public long getArticleId() {
         return articleId;
@@ -53,5 +59,17 @@ public class ArticleDTO {
                 article.getName(),
                 article.getText(),
                 article.getAuthor().getUsername());
+    }
+
+    public static ArrayList<ArticleDTO> articleDTOListToGet(ArrayList<Article> articleList){
+        ArrayList<ArticleDTO> list = new ArrayList<ArticleDTO>();
+        for (Article article :
+                articleList) {
+            ArticleDTO articleDTO = new ArticleDTO();
+            articleDTO.setArticleId(article.getArticleId());
+            articleDTO.setName(article.getName());
+            list.add(articleDTO);
+        }
+        return list;
     }
 }
